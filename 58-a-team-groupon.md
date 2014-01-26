@@ -26,6 +26,12 @@ Table of Contents:
 
 00:17 - **Daniel Shaw**: Hello and welcome to NodeUp! This is NodeUp 58 and today we're gonna do another Node Teams show. I'm joined today by Team Groupon. A great story where Groupon has transformed and been one of the great success stories or moving from Rails to node. I'm joined today by [Sean Massa](http://twitter.com/endangeredmassa), [Sean McCullough](http://twitter.com/mcculloughsean), [Adam Geitgey](https://twitter.com/ageitgey), [Laura Roman](https://engineering.groupon.com/). Today, our sponsors are Joyent, Clock, and &yet. New sponsor: welcome Joyent! Thanks for sponsoring NodeUp. So, I'm @dshaw I run The Node Firm. We help business be successful with node through training, consulting, and support. Let's go through and have everyone introduce themselves. Sean, you want to kick it off?
 
+[Laughter]
+
+01:20 - Yeah, we already made that mistake. Unfortunately, we have two Seans. I think you meant Sean Massa, right?
+
+[Laughter]
+
 01:27 - **Sean Massa**: I'm a node developer at Groupon. I really love testing and community. I work on testing tools and we'll talk some about that. I also run the Chicago NodeJS and Geekfest meetups in Chicago. 
 
 01:40 - **Sean McCullough**: I've been working at Groupon for a couple years. I was the one who started playing around with node at Groupon and helped make it a reality here and I've been starting to evangelize it for other teams who want to make the big switch.
@@ -78,5 +84,41 @@ The other challenge we had was: Groupon grew, not just in the U.S., but we acqui
 
 11:11 - **Daniel Shaw**: Right, right. What's that thing called? I forget, off the top of my head. Spike's thing!
 
+[Laughter]
 
+11:21 - **Sean McCullough**: That was our initial foray into doing node development. We had this JavaScript stack, we started kicking it around and felt like "hey, we could actually get somewhere with this." And then we got that through the prototyping phase and we realized it was a good way to whet our whistle with node, but that wasn't the way that we wanted to go. Mainly for the reasons I pointed out before. Backbone and rich client-side apps isn't usually how our customers want to interact with us.
+
+And we wanted to start focusing on stuff like SEO. So we wanted to make sure that our pages were loading quickly and we were able to render the full page state as soon as the HTML finished coming down to the browser. One of the nice things Adam touched on: we have these multiple different platforms. But we have a really awesome mobile app that is internationalized and talks to all those platforms. Our API team did a really good job of developing a contract that all the other platforms -- even if they had completely different databases on completely different tech stacks -- they talk to the same RESTful API. So if I wanted to get you information about a deal in the US or a deal in Europe, I can basically make the same RESTful request and get the data back in a very similar JSON object. So we were like "why don't we just use that to render our website?" So rather than having to talk to a database, we just talk to the JSON API, get it back and then we can build a front-end that works in the US and work in Europe. So that was my initial prototype was "hey, let's see if we can render a really simple page using our APIs and see if we can get it to work internationally." And we were just shocked by how quickly we were able to build that out. We were able to get a prototype up and running -- with almost no experience in node -- super quick. I think within three days we were completely done. And we were like "alight guys, this seems like really promising technology, here." And since we had a bunch of people who were already writing backbone, we had good JavaScript talent at the company. We had a bunch of people who were very passionate about writing JavaScript we thought this would be an awesome technology to help them get more engaged with doing full-stack web development. 
+
+13:54 - **Daniel Shaw**: That's great. In the discussion and arguments, I guess, around Rails vs Node, I've always pointed to: Rails is great in time to prototype; node is fantastic in time to react. And when you are in a high-growth scenario, what you need is that reaction time. You need to be able to evolve quickly and meet evolving user needs. So that's fantastic; that's really beautiful.
+
+14:26 - **Sean McCullough**: And the one take-away -- if anybody out there listening is about to start a company that they know is gonna go through hyper growth -- is decouple your data stores and use HTTP to talk to them. It's a really nice way to separate concerns and it allows you to change the way your product looks without needing to go through and change your data model as deeply. Since I talked at NodeSummit, I've gotten a lot of feedback. We still use Rails. Our API is still powered on Rails. A bunch of our back end services are on Rails. Just not our web front-end. We found node was really good for making API calls and rendering HTML. 
+
+15:14 - **Daniel Shaw**: Yeah, that's fantastic. Yeah, the team at Box and across the larger services that are really adopting node, that seems to be the first foothold. And then, back from there, sort of going back into the architecture, you're finding that speed and flexibility and ability to interact, basically drifts back from there and takes over other services in the stack. So how did you guys convince people inside Groupon that this was the way to go? Was there any push back, like "Why are we changing technologies?" 
+
+15:58 - **not-sean**: There was definitely push back. It was an interesting story. It was kind of a confluence of two things. One was Sean and Keith building this prototype and saying "hey, this is something we can do, from a developer perspective." And the other one was the company looking for a solution, saying "hey, we really need to rebuild a front-end that's causing us problems."
+
+So that was an impetus, but at that point we had people build out prototypes in six or seven different tech stacks. So we evaluated node as the thing that kicked us off. We also evaluated Java; PHP; Ruby with Rails and with Sinatra; all sorts of other things. With the goal being that -- especially a year and a half ago, when there was skepticism that node was stable enough or mature enough, and there were people who just weren't familiar with it -- we ended up getting to the point where we decided that for the problem we were trying to solve, which is really: a bunch of web requests come in, we bunch of API requests, and format that into HTML. Any of these stacks probably would have solved the problem. So at the end of the day, most of them met most of our requirements as far as deploying it and monitoring it and so on. 
+
+17:04 - **Daniel Shaw**: Right.
+
+17:06 - **not-sean**: And we decided to make a call. And a lot of people were excited about node. A lot of people had JavaScript experience, like Sean said. So we decided to try it. But we tried it first with one of our pages. As some other companies do. We took one part of the Groupon web site, which is the part where you go in, put in your email address and sign up. We ported that to node first to see how it would go and how it would perform.
+
+And basically, it did awesome. They built it out, they deployed it. It was fast. It took less time to build than we thought we did run into a lot of learnings and problems with scaling and deployment that we had to figure out. But it went well enough that it convinced us and gave us the confidence to go forward with a second prototype, and then eventually all the rest of the front end. 
+
+17:52 - **Daniel Shaw**: That's fantastic.
+
+17:53 - **not-sean**: Another funny thing is -- Gorupon has development offices all around the world; we're in Chicago, Palo Alto, Seattle, Berlin, Chile, etcetera. And all of us, we did a kind of tour around the world, trying to pitch this to the rest of the company. Saying "Hey! You may not know us, but we got this cool thing called node and you're gonna just rewrite everything you've ever done in it."
+
+[Laughter]
+
+18:17 - **Daniel Shaw**: How'd that go?
+
+18:18 - **not-sean**: There was some skepticism. Chicago was fairly receptive. And other places, where node was less known, it was less receptive. But for the most part, once people got their hands on it and played with it they were excited. They were excited that we were getting away from a monolithic architecture and they built it faster and built new stuff. But there was a lot of learning. It took us, you know, probably four to five months of people building stuff to get the confidence that we feel like there's a lot of people in the company now who are familiar with this and know what they're doing.
+
+And there were definitely a few angry emails from people who weren't on board.
+
+18:56 - **Daniel Shaw**: Change is hard. You always have that. 
+
+18:59 - **Sean McCullough**: Yeah. I think one of the awesome things that we did was when we started down this road we opened up hack-a-thons at a couple of our offices. So we just invited developers to take a couple of days to build something. To build something Groupon-related. And I think we got a lot of feedback from that. It gave us a good idea in terms of where we stood with what the barriers to adoption we're gonna be.
 
