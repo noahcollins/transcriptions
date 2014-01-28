@@ -96,29 +96,56 @@ And we wanted to start focusing on stuff like SEO. So we wanted to make sure tha
 
 15:14 - **Daniel Shaw**: Yeah, that's fantastic. Yeah, the team at Box and across the larger services that are really adopting node, that seems to be the first foothold. And then, back from there, sort of going back into the architecture, you're finding that speed and flexibility and ability to interact, basically drifts back from there and takes over other services in the stack. So how did you guys convince people inside Groupon that this was the way to go? Was there any push back, like "Why are we changing technologies?" 
 
-15:58 - **not-sean**: There was definitely push back. It was an interesting story. It was kind of a confluence of two things. One was Sean and Keith building this prototype and saying "hey, this is something we can do, from a developer perspective." And the other one was the company looking for a solution, saying "hey, we really need to rebuild a front-end that's causing us problems."
+15:58 - **Not-Sean-McCullough**: There was definitely push back. It was an interesting story. It was kind of a confluence of two things. One was Sean and Keith building this prototype and saying "hey, this is something we can do, from a developer perspective." And the other one was the company looking for a solution, saying "hey, we really need to rebuild a front-end that's causing us problems."
 
 So that was an impetus, but at that point we had people build out prototypes in six or seven different tech stacks. So we evaluated node as the thing that kicked us off. We also evaluated Java; PHP; Ruby with Rails and with Sinatra; all sorts of other things. With the goal being that -- especially a year and a half ago, when there was skepticism that node was stable enough or mature enough, and there were people who just weren't familiar with it -- we ended up getting to the point where we decided that for the problem we were trying to solve, which is really: a bunch of web requests come in, we bunch of API requests, and format that into HTML. Any of these stacks probably would have solved the problem. So at the end of the day, most of them met most of our requirements as far as deploying it and monitoring it and so on. 
 
 17:04 - **Daniel Shaw**: Right.
 
-17:06 - **not-sean**: And we decided to make a call. And a lot of people were excited about node. A lot of people had JavaScript experience, like Sean said. So we decided to try it. But we tried it first with one of our pages. As some other companies do. We took one part of the Groupon web site, which is the part where you go in, put in your email address and sign up. We ported that to node first to see how it would go and how it would perform.
+17:06 - **Not-Sean-McCullough**: And we decided to make a call. And a lot of people were excited about node. A lot of people had JavaScript experience, like Sean said. So we decided to try it. But we tried it first with one of our pages. As some other companies do. We took one part of the Groupon web site, which is the part where you go in, put in your email address and sign up. We ported that to node first to see how it would go and how it would perform.
 
 And basically, it did awesome. They built it out, they deployed it. It was fast. It took less time to build than we thought we did run into a lot of learnings and problems with scaling and deployment that we had to figure out. But it went well enough that it convinced us and gave us the confidence to go forward with a second prototype, and then eventually all the rest of the front end. 
 
 17:52 - **Daniel Shaw**: That's fantastic.
 
-17:53 - **not-sean**: Another funny thing is -- Gorupon has development offices all around the world; we're in Chicago, Palo Alto, Seattle, Berlin, Chile, etcetera. And all of us, we did a kind of tour around the world, trying to pitch this to the rest of the company. Saying "Hey! You may not know us, but we got this cool thing called node and you're gonna just rewrite everything you've ever done in it."
+17:53 - **Not-Sean-McCullough**: Another funny thing is -- Gorupon has development offices all around the world; we're in Chicago, Palo Alto, Seattle, Berlin, Chile, etcetera. And all of us, we did a kind of tour around the world, trying to pitch this to the rest of the company. Saying "Hey! You may not know us, but we got this cool thing called node and you're gonna just rewrite everything you've ever done in it."
 
 [Laughter]
 
 18:17 - **Daniel Shaw**: How'd that go?
 
-18:18 - **not-sean**: There was some skepticism. Chicago was fairly receptive. And other places, where node was less known, it was less receptive. But for the most part, once people got their hands on it and played with it they were excited. They were excited that we were getting away from a monolithic architecture and they built it faster and built new stuff. But there was a lot of learning. It took us, you know, probably four to five months of people building stuff to get the confidence that we feel like there's a lot of people in the company now who are familiar with this and know what they're doing.
+18:18 - **Not-Sean-McCullough**: There was some skepticism. Chicago was fairly receptive. And in other places, where node was less known, it was less receptive. But for the most part, once people got their hands on it and played with it they were excited. They were excited that we were getting away from a monolithic architecture and they built it faster and built new stuff. But there was a lot of learning. It took us, you know, probably four to five months of people building stuff to get the confidence that we feel like there's a lot of people in the company now who are familiar with this and know what they're doing.
 
-And there were definitely a few angry emails from people who weren't on board.
+And there were definitely a few angry emails from people who weren't on board. But for the most part--
 
 18:56 - **Daniel Shaw**: Change is hard. You always have that. 
 
-18:59 - **Sean McCullough**: Yeah. I think one of the awesome things that we did was when we started down this road we opened up hack-a-thons at a couple of our offices. So we just invited developers to take a couple of days to build something. To build something Groupon-related. And I think we got a lot of feedback from that. It gave us a good idea in terms of where we stood with what the barriers to adoption we're gonna be.
+18:59 - **Sean McCullough**: Yeah. I think one of the awesome things that we did was when we started down this road we opened up hackathons at a couple of our offices. So we just invited developers to take a couple of days to build something Groupon-related. And I think we got a lot of feedback from that. It gave us a good idea in terms of where we stood with what the barriers to adoption we're gonna be. Especially in our Berlin office, those are a lot of JavaScript developers and Me, and Sean, and a bunch of the other JavaScript developers at Groupon tend to use very minimal development environment vim and a terminal, or something like that. But these guys were used to using IDEs and they were used to having really awesome debugging tools and we didn't really know what we were missing. We had done everything int he web browser and things like that before. So we were used to a different kind of development flow. And that was something we needed to really invest some time in. Making the developer experience comparable, or at least find tools to help people adapt that kind of stuff. 
 
+20:10 - **Daniel Shaw**: That's fantastic. So we recently had the Walmart team on and we talked about Black Friday at Walmart. What was the impact of Black Friday at Groupon? 
+
+Originally, this whole thing was pitched as "hey, we're gonna rewrite all of Groupon but this time we're gonna do it awesome." And you can imagine, that's a hard thing to buy into, right? And it also means "stop what you're doing! Instead of working on these awesome new features you want to do, can you take all the stuff that already works fine in Ruby and rewrite it in node?" We needed something to spur the company into doing that. So we wanted to launch a brand new re-design called Prom Night, which you'll see now if you go to Groupon.com. And, as Sean has said, we tried to do those kinds of things in our old Ruby stack and it was just infeasible. So we went to the company and we basically said "if you give us three to four months and everybody just stops rewrites on this node platform -- like the site-wide redesign you want -- really quickly"
+
+21:11 - **Daniel Shaw**: Wow.
+
+21:12 - ****: We got them to agree to that everything had to be done before Black Friday and before the holiday season. So for us, it was definitely up to the last minute. We built out the platform, we built out all these different pages and apps on top of it. And then the first real big test was before Black Friday we ran a deal with Starbucks, which had huge traffic, much higher peaks than the typical day. That was the first real test, and overall everything went great. I think Sean has some number of the kind of traffic we were doing that day. 
+
+21:49 - Sean: We were able to sustain a solid 120,000 requests per minute through just our web frontends. That doesn't count any of our mobile traffic or any of that stuff. We've had similar high-traffic days -- and this actually one of our biggest traffic days ever -- but Groupon had a reputation for going down. We ran a Starbucks deal in the beginning of November and we'd run one earlier that year and our site went down for a couple of hours because our monolith couldn't handle all the traffic. For both Black Friday and the Starbucks deal, it was kind of like what Eran Hammer was talking about during Black Friday. We were all around, we were on call waiting for something to happen. And nothing happened. And it was awesome. It was awesome to see nothing happen, but at the same time we were like: "Come on! Nothing's gonna tip over? There isn't gonna be anything that breaks?"
+
+It was smooth sailing. 
+
+22:28 - It wasn't even a blip on the system, which was awesome. And of course this is just in one of our countries -- this is just in the U.S. So when we look worldwide we have much higher traffic than that around the world. But compared to the amount of hardware we had behind Rails that it took to serve that many requests and still crash, and the amount we had behind node, without even having a blip. It was awesome. 
+
+23:17 - **Daniel Shaw**: Nothing better than not having to worry about your servers. Right?
+
+[Laughter]
+
+23:20 - It's huge. Especially during times when you really want people to come. We really engage with our customers during that time. It makes us proud that we can keep the site up when people really want to come and spend their money with us. 
+
+23:40 - **Daniel Shaw**: Right. People are dying at big box stores.
+
+23:45 - Yeah, I think it's important to mention here, too, that this was an effort comprised of dozens of teams -- the actual count was 35 or so -- trying to reproduce their own parts of the system, but all working together and coming together. And nothing fell over. 
+
+24:05 - Yeah it was a massive effort. Basically everybody who works on frontend stuff at Groupon had to rewrite their app, deploy it, and support it over Black Friday. I think of all 35 apps or so, for one of them we had to add one server because that particular app looked like it was getting slightly slow. But there was no user impact. And everything else worked flawlessly. 
+
+24:27 - That's amazing. That's an incredible amount of engineering coordination! How did you pull that part of it off?
